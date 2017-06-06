@@ -29,4 +29,8 @@ public class AnswerList {
   public void setAnswers(ArrayList<Answer> answers) {
     this.answers = answers;
   }
+
+  public String getAnswerByIndex(int index) {
+    return this.answers.get(index).getAnswer();
+  }
 }

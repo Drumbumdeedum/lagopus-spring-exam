@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class QuizRestController {
 
+  private static final String urlString = "https://springexamserver.herokuapp.com/projects/eagles";
+
   @Autowired
   QuizQuestionRepo questionRepo;
 
@@ -44,13 +46,13 @@ public class QuizRestController {
         QuizQuestion firstQuestion = questionRepo.findOne((long) (Math.random() * repoSize));
         questionsForList.add(new RandomQuestion(newId, firstQuestion.getQuestion()));
         newId++;
-      }
-
-      for (int i=0; i < questionsForList.size(); i++) {
-        QuizQuestion questionToAdd = questionRepo.findOne((long) (Math.random() * repoSize));
-        if (!questionToAdd.getQuestion().equals(questionsForList.get(i).getQuestion())) {
-          questionsForList.add(new RandomQuestion(newId, questionToAdd.getQuestion()));
-          newId++;
+      } else {
+        for (int i = 0; i < questionsForList.size(); i++) {
+          QuizQuestion questionToAdd = questionRepo.findOne((long) (Math.random() * repoSize));
+          if (!questionToAdd.getQuestion().equals(questionsForList.get(i).getQuestion())) {
+            questionsForList.add(new RandomQuestion(newId, questionToAdd.getQuestion()));
+            newId++;
+          }
         }
       }
     }
@@ -65,8 +67,21 @@ public class QuizRestController {
   public ProjectResponse answers(@RequestBody AnswerList answerList) {
 
     RandomQuestionsList questions = randomQuestionsRepo.findOne(answerList.getId());
-    if ()
 
+    boolean answersAreCorrect = true;
+
+    for (int i=1; i <= 5; i++) {
+      String correctAnswer = questionRepo.findOneByQuestionEquals(questions.getQuestion(i)).get(0).getAnswer();
+      String receivedAnswer = answerList.getAnswerByIndex(i);
+      
+      if (!correctAnswer.equals(receivedAnswer)) {
+        answersAreCorrect = false;
+      }
+    }
+
+    if (answersAreCorrect) {
+      return new ProjectResponse();
+    }
     return new ProjectResponse();
   }
 }
