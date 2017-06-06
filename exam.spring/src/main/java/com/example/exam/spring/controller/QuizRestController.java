@@ -73,13 +73,14 @@ public class QuizRestController {
     for (int i=1; i <= 5; i++) {
       String correctAnswer = questionRepo.findOneByQuestionEquals(questions.getQuestion(i)).get(0).getAnswer();
       String receivedAnswer = answerList.getAnswerByIndex(i);
-      
+
       if (!correctAnswer.equals(receivedAnswer)) {
         answersAreCorrect = false;
       }
     }
 
     if (answersAreCorrect) {
+      /*HTTP request part*/
       return new ProjectResponse();
     }
     return new ProjectResponse();

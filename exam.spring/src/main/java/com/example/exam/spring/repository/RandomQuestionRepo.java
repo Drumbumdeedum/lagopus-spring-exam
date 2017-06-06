@@ -1,6 +1,5 @@
 package com.example.exam.spring.repository;
 
-import com.example.exam.spring.model.QuizQuestion;
 import com.example.exam.spring.model.RandomQuestion;
 import com.example.exam.spring.model.RandomQuestionsList;
 import java.util.List;
