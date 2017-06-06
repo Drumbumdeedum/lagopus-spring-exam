@@ -106,15 +106,20 @@ Your task is to create a RESTful quiz application with full of greenfox question
 
 Please define it with your own words. We are expecting at least 3 distinct ideas that you write here:
 
+- When i have want to declare some characteristics that are related to an object type, and not just functions or methods that can be used on that object.
+
+- We use abstract classes when we want to use them as superclasses, from which other classes can inherit.
+
+- We use abstract classes when we want to share some code among several related classes.
 
 ### Analyzing URL
 Please name the parts of the URL below.
 [<img src="assets/URLanalysis.png" alt="parts of URL" />](assets/URLanalysis.png?raw=true)
 
-1:  
-2:  
-3:  
-4:  
-5:  
-6:  
-7:  
+1: protocol
+2: subdomain
+3: domain name
+4: port / port number
+5: path
+6: "question mark" / query identifier
+7: query
